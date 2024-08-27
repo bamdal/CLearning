@@ -1,4 +1,9 @@
-﻿#include <iostream>
+﻿// L01_StandardIO : C/C++의 표준 입출력( Standard Input Output )
+// CLI( Command Line Interface ) 환경에서 사용.
+
+#include <stdio.h>		// C
+#include <iostream>		// C++
+
 int main()
 {
 	// 정수형 변수 선언, 초기화
@@ -7,6 +12,9 @@ int main()
 
 #pragma region L01_StandardIO / C++ 스타일
 	{
+		// std::cout ==> ""안의 문자열을 출력
+		// std::cin   ==> 유저에게 데이터를 입력받아 변수에 저장
+
 		std::cout << "=C++ Style=" << std::endl;
 		std::cout << "input Num1 : ";
 		std::cin >> iNum1;	// 사용자에게 정수를 입력받아 저장
@@ -55,6 +63,9 @@ int main()
 		printf("Num1 / Num2 = %d\n", iNum1 / iNum2);
 		//나눗셈(나머지)출력
 		printf("Num1 %% Num2 = %d\n", iNum1 % iNum2);
+
+		printf("\a");	// 이스케이프 시퀀스(경고음)
+
 	}
 
 #pragma endregion
