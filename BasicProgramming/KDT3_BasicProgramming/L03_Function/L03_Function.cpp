@@ -65,8 +65,11 @@ int main()
 		MyTestFunc1();	// MyTestFunc1 함수 호출
 		MyTestFunc1();	// 여러번 호출도 가능
 		MyTestFunc1();
-
-		int iRet = MyTestFunc3(100, 500); // MyTestFunc3 호출 / Argument(인자)로 100,500로 전달
+		
+		int A = 100;
+		int B = 500;
+		// Call by Value (값의 의한 전달)
+		int iRet = MyTestFunc3(A, B); // MyTestFunc3 호출 / Argument(인자)로 100,500로 전달
 		std::cout << "Add iRet : " << iRet << std::endl;
 
 		iRet = MyMultiplyFunc(50, 2);
@@ -79,6 +82,8 @@ int main()
 	{
 		Print();		// NewJeans namespace로 인식
 		BTS::Print();
+		// namespace를 사용하기 전까진 컴파일 에러 NewJeans껀지 BTS껀지 모름.
+		// namespace를 둘 다 사용해도 어디껀지 몰라서 컴파일 에러 => :: 연산자 사용해서 그룹 명시
 		SamplePrint();
 	}
 #pragma endregion
