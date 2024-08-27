@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 #include <iomanip>
+#include <io.h>
+#include <fcntl.h>
 
 int main()
 {
@@ -132,5 +134,29 @@ int main()
 	}
 
 #pragma endregion
+
+#pragma region L02_Variable / 자료형( data type ) / 문자형
+	{
+		std::cout << "== (4) 문자형 ==" << std::endl;
+
+		// char : 단일문자(아스키코드 : 7bit) 저장용 1Byte 자료형
+		// signed char = -128~127 까지 / unsigned char : 0 ~ 255 까지
+
+		char cVal = 'A';
+		std::cout << "cVal = " << cVal << std::endl;
+
+
+		// unsigned char ucVal = 240; // 아스키코드에 해당 문자가 없어 깨진 문자가 출력됨
+		// std::cout << "ucVal = " << ucVal << std::endl;
+
+		// wchar_t : 단일 문자( 유니코드: 16비트 ) 저장용 2Byte 자료형
+		_setmode(_fileno(stdout), _O_U16TEXT); // 원도우 CL에서 유니코드 출력 모드 설정
+		wchar_t W1 = L'가', W2 = L'나', W3 = L'다'; // 한글
+		std::wcout << "W1 W2 W3 = " << W1 << W2 << W3 << std::endl;
+		wchar_t W4 = L'好', W5 = L'╰(*°▽°*)╯', W6 = L'№', W7 = L'φ(゜▽゜*)♪'; // 한자, 일본어, 러시아어, 아랍어
+		std::wcout << "W4 W5 W6 W7 = " << W4 << W5 << W6 << W7 << std::endl;
+	}
+#pragma endregion
+
 
 }
