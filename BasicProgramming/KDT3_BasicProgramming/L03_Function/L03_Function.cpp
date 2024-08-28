@@ -122,5 +122,17 @@ int main()
 	}
 #pragma endregion
 
+#pragma region L03_Function / 함수의 디폴트 인자와 Overloading
+	{
+		int iRet = MyAddFunc(100,200);
+		cout << "MyAddFunc의 인자 2개 모두 넣기 (100,200) : " << iRet << endl;
+		iRet = MyAddFunc(100);
+		cout << "MyAddFunc의 인자 1개 넣기 (100) : " << iRet << endl;
+
+		cout << "Overloading 1 : " << MyAddFuncOver(10) << endl;
+		cout << "Overloading 2 : " << MyAddFuncOver(10,20) << endl;
+		cout << "Overloading 2 : " << MyAddFuncOver('A', 10, 20) << endl;
+	}
+#pragma endregion
 
 }
