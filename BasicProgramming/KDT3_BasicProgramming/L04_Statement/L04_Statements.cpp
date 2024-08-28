@@ -1,5 +1,12 @@
 ﻿#include <iostream>
+#include <iomanip>
 using namespace std;
+
+int Test()
+{
+	cout << "Test() 함수 콜" << endl;
+	return 1;
+}
 
 int main()
 {
@@ -41,7 +48,7 @@ int main()
 
 #pragma region L04_Statements / 조건문 ( switch / case)
 	{
-		bState = true;
+		//bState = true;
 		if (bState)
 		{
 			int iInputVal = 0;
@@ -70,6 +77,7 @@ int main()
 
 #pragma region L04_Statements / 반복문( while / do while / for)
 	{
+		//bState = true;
 		if (bState)
 		{
 			int iCount = 10;
@@ -119,6 +127,132 @@ int main()
 	}
 
 #pragma endregion
+
+#pragma region L04_Statements / 연산자, 표현식, 문자(구문)
+	{
+		// 사칙연산 ( +, -, *, /, % ) => C/C++ 몫(/), 나머지(%) 구분
+		int X = 4 + 2;
+		int Y = 12 - 2;
+		cout << "X = " << X << "Y = " << Y << endl;
+
+		if (X != 0)
+		{
+			int Z = Y / X;
+			cout << "Y / X (몫) = " << Z << endl;
+			Z = Y % X;
+			cout << "Y % X (나머지) = " << Z << endl;
+
+		}
+		
+		// 단항 연산자 표현식
+		// 1) 부호 연산자
+		cout << "\n== 1) 부호 연산자 =="  << endl;
+		X = -1;
+		Y = -X;
+		cout << "X = " << X << "Y = " << Y << endl;
+		Y = +X;
+		cout << "X = " << X << "Y = " << Y << endl;
+
+		// 2) 증감 연산자(선행 후행)
+		cout << "\n== 2) 증감 연산자 ==" << endl;
+
+		// 선행
+		X = 0;
+		Y = 0;
+		cout << "선행 X = " << ++X << endl;	
+		cout << "선행 Y = " << --Y << endl;
+
+		// 후행
+		X = 0;
+		Y = 0;
+		cout << "후행 X = " << X++ << endl;	
+		cout << "후행 Y = " << Y-- << endl;
+
+		// 3) 형변형 연산자
+		cout << "\n== 3) 형변형 연산자 ==" << endl;
+		X = 10; Y = 3;
+		double Z = (double)X / Y;
+		cout << "Z = " << std::setprecision(std::numeric_limits<double>::digits10 + 1) << Z << endl;
+
+		// 4) sizeof() 연산자
+		cout << "\n== 4) sizeof() 연산자 ==" << endl;
+		cout << "X 크기 = " << sizeof(X) << "Y 크기 = " << sizeof(Y) << endl;
+
+		// 5) 논리 NOT
+		cout << "\n== 5) 논리 NOT ==" << endl;
+		bool bCheck = false;
+		if (!bCheck == true)
+		{
+			cout << "bCheck = " << bCheck << "!bCheck = " << !bCheck << endl;
+		}
+
+		// 이항 연산자 표현식
+		// 1) 산술 연산자 ( 대임, 사칙연산 )
+		X = 0; Y = 0;
+
+		// 2) 관계 연산자
+		if (X == Y)
+		{
+			cout << "X == Y : " << (X == Y++) << endl;
+		}
+
+		if (X != Y)
+		{
+			cout << "X != Y : " << (X != Y) << endl;
+		}
+		if (X < Y)
+		{
+			cout << "X < Y : " << (X < Y) << endl;
+		}
+
+		X = 10;
+		if (X > Y)
+		{
+			cout << "X > Y : " << (X > Y) << endl;
+		}
+		// 3) 논리 연산자 ( 0 : false, 0을 제외한 모든값 : true )
+		X = -123; Y = 2930192;
+		if (X && Y) // 둘 다 참일 때 ture
+		{
+			cout << "X && Y =" << (X && Y) << endl;
+		}
+		X = 0;
+
+		if (X && Y) 
+		{
+			cout << "1) X && Y = " << (X && Y) << endl;
+		}
+		else
+		{
+			cout << "2) X && Y = " << (X && Y) << endl;
+		}
+
+		if (X || Y) // 둘중 하나라도 ture
+		{
+			cout << "1) X || Y = " << (X || Y) << endl;
+		}
+		else
+		{
+			cout << "2) X || Y = " << (X || Y) << endl;
+
+		}
+
+		X = 1, Y = 0, Z = 0;
+		if(X || Test())	// X가 참이므로 Test()는 확인안함
+		{
+			cout << "Z = " << Z << endl;
+		}
+
+		// 삼항 연산자 표현식 ( 조건식 ? 참 : 거짓 )
+		X = 5; Y = 4; Z = 0;
+		Z = X > Y ? 10 : -10;
+		cout << "Z = " << Z << endl;
+
+		// 연산자 우선순위
+		// 정상적인 회사는 ()로 묶고 구문을 분할하여 읽기 좋은 코드로 작성
+	}
+#pragma endregion
+
 
 }
 
