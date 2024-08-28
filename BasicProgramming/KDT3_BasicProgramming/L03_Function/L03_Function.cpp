@@ -25,6 +25,12 @@ namespace Sample
 	{
 		cout << "SamplePrint using namespace 사용" << endl;
 	}
+
+	namespace TEST	// namespace안에 namespace를 넣을 수 있다
+	{
+		int A;
+		int B;
+	}
 }
 
 using namespace NewJeans;
@@ -84,8 +90,37 @@ int main()
 		BTS::Print();
 		// namespace를 사용하기 전까진 컴파일 에러 NewJeans껀지 BTS껀지 모름.
 		// namespace를 둘 다 사용해도 어디껀지 몰라서 컴파일 에러 => :: 연산자 사용해서 그룹 명시
-		SamplePrint();
+		SamplePrint();   
+
+		Sample::TEST::A;	// namespace안에 namespace를 넣을 수 있다
+		TEST::B; // using namespace를 했으니 Sample생략 가능
 	}
 #pragma endregion
+
+#pragma region L03_Function / 변수의 범위(Scope)
+	{
+		int iLocal1 = 100;
+		cout << "지역변수 iLocal1 = " << iLocal1 << endl;
+		
+		{
+			int iLocal2 = 200;
+			cout << "지역변수 iLocal1 = " << iLocal1 << endl;
+			cout << "지역변수 iLocal2 = " << iLocal2 << endl;
+		}
+
+		// cout << "지역변수 iLocal2 = " << iLocal2 << endl;
+		// {} 안에 선언된 지역변수는 외부에서 접근 불가
+
+		MyScopeTestFunc();
+		cout << "main에서 사용 : 전역변수 iGlobalVal = " << iGlobalVal << endl;
+
+		int iGlobalVal = 123;
+		cout << "main에서 사용 : 지역변수 iGlobalVal = " << iGlobalVal << endl;
+		// 전역과 로컬에 동일 이름의 변수가 있을 시 cout 결과는 로컬을 출력 => 로컬변수가 우선권이 높음.
+		// 디버깅시 각 iGlobalVal이 비정상 값으로 노출될 수 있다. => 이름 중복은 반드시 피해야 한다.
+		cout << "불가피할 경우 ::iGlobalVal =" << ::iGlobalVal << endl;
+	}
+#pragma endregion
+
 
 }
