@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#include "TestFunc.h"
+#include <iostream>
 using namespace std;
 
 int main()
@@ -36,5 +37,132 @@ int main()
 
 	}
 #pragma endregion
+
+#pragma region L07_Pointer_Array / 배열
+	// 같은 자료형의 변수 여러 개를 연속으로 늘어놓은 자료구조
+	{
+		cout << "[ 배열 원소의 값, 주소 출력 ]" << endl;
+		//int iArr[5];				// 안에 쓰레기 값이 들어감
+		//int iArr[5] = {};			// 각 원소들을 0으로 초기화 된다.
+		//int iArr[5] = {0,1,2,};	// 작성 안된 부분의 원소는 자동으로 0 초기화
+		int iArr[5] = {0,1,2,3,4};
+		iArr[0] = 5;				// 각 원소를 개별적으로 초기화
+		//int iArr[5] = {0,1,2,3,4,5};	// 오류 C2078 이니셜라이저 값이 너무 많습니다
+
+		// 배열 인덱스는 0 ~ n-1 까지
+		int iSum = 0;
+		for (int i = 0; i < 5; i++)
+		{
+			cout << "iArr[" << i << "]의 값 : " << iArr[i] << ", 주소 값 : " << &iArr[i] << endl;
+			iSum += iArr[i];
+		}
+
+		cout << "iSum의 값 : " << iSum << endl;
+
+		cout << "배열 이름 iArr의 주소 : " << iArr << endl;
+
+		iSum = 0;
+		int* iPtr = iArr; // 배열의 첫번째 원소의 주소 대입
+		//int* iPtr = &iArr[O]; // 배열의 첫번째 원소의 주소 대입
+		for (int i = 0; i < 5; i++)
+		{
+			cout << "iPtr + " << i << "의 값 :" << *iPtr << ", 주소 :" << iPtr << endl;
+			iSum += *iPtr;
+			iPtr++;
+			
+		}
+		cout << "iSum의 값 : " << iSum << endl;
+
+		cout << "[ 2차원 배열 원소의 값, 주소 출력 ]" << endl;
+		// 2차원 배열
+		int iArr2[8][5];
+		for (int i = 0; i < sizeof(iArr2)/ sizeof(iArr2[0]); i++)
+		{
+			for (int j = 0; j < sizeof(iArr2[0]) / sizeof(int); j++)
+			{
+				iArr2[i][j] = i * 2 + j;
+				cout << "iArr2[" << i << "][" << j << "]의 값 : " << iArr2[i][j] << ", 주소 " << &iArr2[i][j] << endl;;
+			}
+
+		}
+
+	}
+#pragma endregion
+
+#pragma region L07_Pointer_Array / 포인터와 배열의 크기
+	{
+		cout << "[ 포인터와 배열의 크기 ]" << endl;
+		int iArr[10] = { 1, };
+		int* iPtr = iArr;
+		short sArr[10] = {};
+		short* sPtr = sArr;
+		cout << "*iPtr = " << *iPtr << ", 가리키는 주소 : " << iPtr << endl;
+		cout << "iArr[0] = " << iArr[0] << ", 배열의 주소 : " << iArr << endl;
+
+		cout << "iPtr의 사이즈 : " << sizeof(iPtr) << endl;
+		cout << "iArr의 사이즈 : " << sizeof(iArr) << endl;
+		cout << "sPtr의 사이즈 : " << sizeof(sPtr) << endl;
+		cout << "sArr[10]의 사이즈 : " << sizeof(sArr) << endl;
+
+		// 포인터 변수에 배열의 시작 주소를 넣어서 둘이 같은 주소를 가리키고 있지만
+		// 포인터는 (int*) 타입 / 배열은 int[10] 타임으로 엄연히 다르다
+	}
+#pragma endregion
+
+#pragma region L07_Pointer_Array / 문자열
+	{
+		char szData[6] = {'H','E','L','L','O',0};
+		char szData2[] = "Hello";	// 끝에 null 문자 (0값)가 들어가 있다 => null 문자가 문자의 끝을 알림
+
+		cout << "문자열 길이 : " << strlen(szData) << endl;
+		cout << "문자열 크기 : " << sizeof(szData) << endl;
+		cout << "문자열 값 : " << szData << endl;
+
+
+		cout << "문자열 길이 : " << strlen(szData2) << endl;
+		cout << "문자열 크기 : " << sizeof(szData2) << endl;
+		cout << "문자열 값 : " << szData2 << endl;
+
+		char* ptrData = szData2;
+		cout << "ptrData의 크기" << szData2 << endl;
+		*ptrData = 'K';
+		cout << "문자열 값 : " << szData2 << endl;
+		*(ptrData+2) = 'M';
+		cout << "문자열 값 : " << szData2 << endl;
+
+	}
+#pragma endregion
+
+#pragma region L07_Pointer_Array / Call by value, Call by reference
+	{
+		cout << "[ Call by value, Call by reference ]" << endl;
+
+		int iA = 200, iB = 10;
+		cout << "<최초값>" << endl;
+		cout << "iA : " << iA << ", iB : " << iB << endl;
+		SwapValue1(iA,iB);
+		cout << "<SwapValue1 호출 후>" << endl;
+		cout << "iA : " << iA << ", iB : " << iB << endl;
+
+		SwapValue2(&iA, &iB);
+		cout << "<SwapValue2 호출 후>" << endl;
+		cout << "iA : " << iA << ", iB : " << iB << endl;
+
+		SwapReference(iA, iB);
+		cout << "<SwapReference 호출 후>" << endl;
+		cout << "iA : " << iA << ", iB : " << iB << endl;
+
+		cout << "<Reference 규칙>" << endl;
+		int& iC = iA;
+		cout << "iC 는 iA의 레퍼런스 " << &iC << ", " << &iA << endl;
+		iC = iB;
+		cout << "iC는 항상 iA의 레퍼런스이다" << &iC << ", " << &iB << endl;
+
+		int iX = 123;
+		iC = iX;
+		cout << "iC의 레퍼런스는 변경이 안됨" << &iC << ", " << &iX << endl;
+	}
+#pragma endregion
+
 }
 
