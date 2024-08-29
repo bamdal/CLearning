@@ -1,4 +1,5 @@
 ﻿#include "TestFunc.h"
+#include "../L06_Structure/MyCharacter.h"
 #include <iostream>
 using namespace std;
 
@@ -163,6 +164,51 @@ int main()
 		cout << "iC의 레퍼런스는 변경이 안됨" << &iC << ", " << &iX << endl;
 	}
 #pragma endregion
+
+#pragma region L07_Pointer_Array / 구조체 포인터, 구조체 배열
+	{
+		cout << endl << "[ 구조체 포인터 ]" << endl;
+
+		MyCharacter NewChar;
+		NewChar.PrintInfo();
+		
+		MyCharacter* ptrChar = &NewChar;
+		ptrChar->ClassType = ECharClass::Paladin;
+		ptrChar->Level = 10;
+		ptrChar->Exp = 30000;
+		ptrChar->PrintInfo();
+
+		cout << endl << "[ 구조체 배열과 포인터 ]" << endl;
+		const int iPartyPlayerMax = 5;
+		MyCharacter Party[iPartyPlayerMax];
+
+		for (int i = 0; i < iPartyPlayerMax; i++)
+		{
+			ptrChar = &Party[i];
+			ptrChar->ClassType = (ECharClass)i;
+			ptrChar->Level = ((i + 1) * 2);
+			ptrChar->Exp = ((i + 1) * 100);
+			ptrChar->PrintInfo();
+		}
+	}
+#pragma endregion
+
+#pragma region L07_Pointer_Array / 동적 메모리 할당
+	{
+		cout << "[ C방식의 동적할당 ]" << endl;
+		int* ptrA = (int*)malloc(sizeof(int));	// int(4Byte) 만큼 Heap영역에 int로 형변환 후 동적메모리 할당
+												// malloc은 뭐든 형변환해서 사용가능
+		
+		if (ptrA != nullptr)					// 동적 할당은 [반드시] nullptr 인지 체크해야 한다
+		{
+			*ptrA = 100;
+			cout << "*ptrA의 값 : " << *ptrA << ", ptrA의 주소" << ptrA << endl;
+		}
+
+		free(ptrA);								// 동적할당한 메모리는 반드시 해제한다.
+	}
+#pragma endregion
+
 
 }
 
