@@ -221,6 +221,19 @@ int main()
 		cout << "short sA값 = " << bitset<16>(sA) << " : " << sA << endl;
 	}
 
+	{
+		// 데이터 유실이 발생하지 않음 (숫자 승격) MSI부호로 승격중 생긴 공백을 채움
+		char cB = -1;
+		cout << "char cB값=" << bitset<8>(cB) << ":" << (int)cB << endl;
+	    short sA = cB;
+		cout << "short sA값=" << bitset<16>(sA) << ":" << sA << endl;
+		cB = 127; // 0111 1111
+		cout << "char cB값=" << bitset<8>(cB) << ":" << (int)cB << endl;
+		sA = cB;
+		cout << "short sA값=" << bitset<16>(sA) << ":" << sA << endl;
+
+	}
+
 	// 명시적 형변환 : 개발자가 표현식을 의도적으로 직접 Casting 하는 것
 	{
 		int iA = 100, iB = 6;

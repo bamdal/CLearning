@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "L04_Statements", "L04_State
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "L05_BasicMemory", "L05_BasicMemory\L05_BasicMemory.vcxproj", "{339E96DE-751B-43D0-9FFB-1377AF08C96C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "L06_Structure", "L06_Structure\L06_Structure.vcxproj", "{66537249-A5D3-4C69-B60D-97D53556F685}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{339E96DE-751B-43D0-9FFB-1377AF08C96C}.Release|x64.Build.0 = Release|x64
 		{339E96DE-751B-43D0-9FFB-1377AF08C96C}.Release|x86.ActiveCfg = Release|Win32
 		{339E96DE-751B-43D0-9FFB-1377AF08C96C}.Release|x86.Build.0 = Release|Win32
+		{66537249-A5D3-4C69-B60D-97D53556F685}.Debug|x64.ActiveCfg = Debug|x64
+		{66537249-A5D3-4C69-B60D-97D53556F685}.Debug|x64.Build.0 = Debug|x64
+		{66537249-A5D3-4C69-B60D-97D53556F685}.Debug|x86.ActiveCfg = Debug|Win32
+		{66537249-A5D3-4C69-B60D-97D53556F685}.Debug|x86.Build.0 = Debug|Win32
+		{66537249-A5D3-4C69-B60D-97D53556F685}.Release|x64.ActiveCfg = Release|x64
+		{66537249-A5D3-4C69-B60D-97D53556F685}.Release|x64.Build.0 = Release|x64
+		{66537249-A5D3-4C69-B60D-97D53556F685}.Release|x86.ActiveCfg = Release|Win32
+		{66537249-A5D3-4C69-B60D-97D53556F685}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
