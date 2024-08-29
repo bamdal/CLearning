@@ -26,7 +26,7 @@ enum ETest : MyInt32	// int와 같다
 
 int main()
 {
-#pragma region typedef / enum형
+#pragma region L06_Structure / typedef / enum형
 	{
 		// typedef 예시
 
@@ -81,7 +81,7 @@ int main()
 	}
 #pragma endregion
 
-#pragma region 구조체
+#pragma region L06_Structure / 구조체
 	{
 		MyCharacter Char1;
 		Char1.ClassType = ECharClass::Rogue;
