@@ -209,6 +209,28 @@ int main()
 	}
 #pragma endregion
 
+#pragma region L07_Pointer_Array / 함수 포인터와 프로그램의 메모리 구조
+	{
+		cout << endl << "[ 함수 포인터와 프로그램의 메모리 구조 ]" << endl;
+
+		int iA = 123;
+		int iB = 456;
+		
+		// 리턴값 적고, 함수포인터 이름 적고, 파라미터의 자료형만 적기
+		void (*pFunc1)(int*, int*) = SwapValue2;
+		pFunc1(&iA, &iB);
+		cout << "iA = " << iA << ", iB = " << iB << endl;
+
+		PrintMemortArc(); // 일반 호출
+		void (*p_Func2)(void) = PrintMemortArc;
+		p_Func2();	// 함수 포인터로 호출
+		cout << "main 함수의 주소" << main << endl;
+
+		// 함수 포인터 배열
+
+	}
+#pragma endregion
+
 
 }
 
