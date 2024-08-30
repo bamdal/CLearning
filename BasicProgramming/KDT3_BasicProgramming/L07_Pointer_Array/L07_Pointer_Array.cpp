@@ -250,6 +250,11 @@ int main()
 
 #pragma region L07_Pointer_Array / 전처리기
 	{
+#if _DEBUG
+		PreProcessFunc_Debug();
+#elif NDEBUG
+		PreProcessFunc_Release();
+#endif // _DEBUG
 
 
 	}

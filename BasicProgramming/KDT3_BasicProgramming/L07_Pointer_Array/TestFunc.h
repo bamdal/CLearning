@@ -1,9 +1,26 @@
 #pragma once
 
+
+#define MAX_MY_FUNC  4
+#ifndef TEST_FUNC
+#define TEST_FUNC
+
 #include <iostream>
 using namespace std;
-#define MAX_MY_FUNC  4
 
+#ifdef _DEBUG
+void PreProcessFunc_Debug()
+{
+	cout << "[DEBUG 모드에서만 인식하는 함수]" << endl;
+}
+#elif NDEBUG
+void PreProcessFunc_Release()
+{
+	cout << "[RELEASE 모드에서만 인식하는 함수]" << endl;
+}
+
+
+#endif // _DEBUG
 
 // call by value
 // 입력된 두 값을 서로 바꿔주는 함수
@@ -96,3 +113,4 @@ int MyDiv(int a, int b)
 	return  a / b;
 }
 
+#endif // !TEST_FUNC
