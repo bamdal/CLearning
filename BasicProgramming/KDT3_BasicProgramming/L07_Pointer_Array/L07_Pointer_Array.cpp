@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+
 int main()
 {
 #pragma region L07_Pointer_Array / 포인터
@@ -215,7 +216,7 @@ int main()
 
 		int iA = 123;
 		int iB = 456;
-		
+
 		// 리턴값 적고, 함수포인터 이름 적고, 파라미터의 자료형만 적기
 		void (*pFunc1)(int*, int*) = SwapValue2;
 		pFunc1(&iA, &iB);
@@ -226,7 +227,30 @@ int main()
 		p_Func2();	// 함수 포인터로 호출
 		cout << "main 함수의 주소" << main << endl;
 
-		// 함수 포인터 배열
+		// 함수 포인터 배열 (반드시 상수를 넣어줘야한다. define, const)
+		//int (*pFunc[MAX_MY_FUNC])(int, int) = { MyAdd, MySub ,MyMul ,MyDiv };
+
+		// 함수 포인터 배열 (반드시 상수를 넣어줘야한다. define, const)
+		int (*pFunc[MAX_MY_FUNC])(int, int); 
+		pFunc[0] = MyAdd;	// 바인딩
+		pFunc[1] = MySub;
+		pFunc[2] = MyMul;
+		pFunc[3] = MyDiv;
+
+
+		for (int i = 0; i < MAX_MY_FUNC; i++)
+		{
+			int iRet = pFunc[i](10, 5);
+			cout << i << "번째 함수 포인터 계산 : "<< iRet << endl;
+		}
+
+		// 위 방식이 UE의 멀티캐스트 델리게이트 방식
+	} 
+#pragma endregion
+
+#pragma region L07_Pointer_Array / 전처리기
+	{
+
 
 	}
 #pragma endregion

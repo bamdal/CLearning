@@ -2,6 +2,7 @@
 
 #include <iostream>
 using namespace std;
+#define MAX_MY_FUNC  4
 
 
 // call by value
@@ -70,3 +71,28 @@ void PrintMemortArc(void)
 	delete(D);
 	delete[](E);
 }
+
+int MyAdd(int a, int b)
+{
+	cout << "<MyAdd 호출>" << endl;
+	return  a + b;
+}
+
+int MySub(int a, int b)
+{
+	cout << "<MySub 호출>" << endl;
+	return  a - b;
+}
+
+int MyMul(int a, int b)
+{
+	cout << "<MyMul 호출>" << endl;
+	return  a * b;
+}
+
+int MyDiv(int a, int b)
+{
+	cout << "<MyDiv 호출>" << endl;
+	return  a / b;
+}
+
