@@ -30,17 +30,79 @@ public:
     }
 
     // 복사 생성자 (call by reference)
-    CTranslation(CTranslation& obj)
+    CTranslation(const CTranslation& obj)
     {
         X = obj.X;
         Y = obj.Y;
         Z = obj.Z;
         // 이렇게 참조자로 받으면 원본값을 변경할 수 있음 그래서 const를 붙여준다(관례)
-        obj.X = 8888;   // const 키워드 쓰면 컴파일 에러
+        //obj.X = 8888;   // const 키워드 쓰면 컴파일 에러
  
     }
 };
 
+class CRotation
+{
+public:
+    double X, Y, Z;
+
+    CRotation() // 객체 생성시 호출되는 기본 생성자에서 맴버를 초기화
+    {
+        X = 0;
+        Y = 0;
+        Z = 0;
+    }
+
+    // 복사 생성자 만들어 보자
+    CRotation(const CRotation& obj)
+    {
+        X = obj.X;
+        Y = obj.Y;
+        Z = obj.Z;
+    }
+};
+
+class CScale
+{
+public:
+    double* _scale;
+
+    CScale()
+    {
+        _scale = new double[3];
+        for (int i = 0; i < 3; i++)
+        {
+            _scale[i] = 100 + i;
+        }
+    }
+    ~CScale()
+    {
+        delete[] (_scale);
+    }
+
+    explicit CScale(const CScale& obj)
+    {
+        _scale = new double[3];
+        for (int i = 0; i < 3; i++)
+        {
+            _scale[i] = obj._scale[i];  // 깊은 복사
+        }
+    }
+
+    void print()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (_scale != nullptr)
+            {
+                cout << _scale[i] << " ";
+            }
+        }
+        cout << endl;
+
+
+    }
+};
 int main()
 {
 #pragma region
@@ -54,6 +116,32 @@ int main()
         CTranslation T3 = T2;   // 객체의 복사 => 모든 메모리가 복제하는 방식(맴버가 수백수천개면 비효율적이다)
 
         CTranslation T4(T2);    // 이렇게 자주 쓴다    같은 주소를 쓰기에 값이 하나 변경되면 같이 변경됨
+        T4.X = 8888;
+
+
+        // 복사 생성자 사용시 주의점 1
+        CRotation R1;   // 컴파일 에러(디폴트 생성자를 호출해야 하는데, 위에서 복사생성자를 만들었기 때문에 컴파일러가 디폴트생성자를 만들어 주지 않는다.)
+        R1.X = 100;
+        R1.Y = 100;
+        R1.Z = 100;
+
+        CRotation R2(R1);
+
+        // 복사 생성자 사용시 주의점 2
+
+        CScale S1;
+        S1.print();
+
+        //CScale S2 = S1;   // 복사 생성자를 컴파일러가 자동 생성하면 얕은 복사가 일어나 주소만 넘어가 S2의 값 변경시 S1도 연달아 교체된다.
+                            // explicit 사용해 얕은 복사가 일어나는걸 막을수 있음 
+        CScale S2(S1);
+        S2.print();
+
+        S2._scale[0] = 123, S2._scale[1] = 456, S2._scale[2] = 789;
+        S2.print();
+
+        S1.print(); // 얕은 복사는 S1값도 바뀐다
+
         int ll = 0;
     }
 
