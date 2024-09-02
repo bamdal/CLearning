@@ -3,6 +3,12 @@
 
 using namespace std;
 
+// 매크로 함수
+#define MY_AGE 20
+#define SAFE_DELETE(p) {if(p) {delete(p); (p) = nullptr;}}
+#define SAFE_DELETE_ARR(p){if(p){ delete[](p); (p)=nullptr;}}
+#define SAFE_DELETE_AND_COUT(p) {SAFE_DELETE(p) {std::cout << "메모리 해제완료" << endl;}}
+
 // 구조체와 클래스의 차이 : 구조체는 접근 지정자가 기본적으로 public 으로, 클래스는 접근 지정자가 기본적으로 private이다
 struct MyStruct	// 구조체
 {
@@ -64,6 +70,10 @@ int main()
 			{
 				cout << "ptrObj 와 ptrObj의 this 포인터의 주소는 같다" << endl;
 			}
+
+			delete ptrObj;		// 객체파괴 (소멸자 호출! 중요)
+			ptrObj = nullptr;	// 관용적으로 소멸된 포인터의 객체는 다시 nullptr을 넣어준다
+			SAFE_DELETE_AND_COUT(ptrObj);
 		}
 	}
 #pragma endregion

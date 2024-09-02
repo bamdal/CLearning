@@ -24,7 +24,7 @@ public: // 이 밑은 public
     }
     ~CSimpleClass()
     {
-        cout << "소멸자 ~CSimpleClass() 호출" << m_strName << endl;
+        cout << "소멸자 ~CSimpleClass() 호출 : " << m_strName << endl;
     }
 
     int GetValue1()
