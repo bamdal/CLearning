@@ -50,6 +50,22 @@ int main()
 
 		cout << "MyObj.AddVal : " << MyObj.AddVal() << endl;
 	}
+	{
+		CSimpleClass* ptrObj = new CSimpleClass;
+		if (ptrObj != nullptr)
+		{
+			ptrObj->SetValue1(4);
+			ptrObj->SetValue2(1000);
+			ptrObj->SetName("My First Class!!");
+			cout << "ptrObj->AddVal = " << ptrObj->AddVal() << endl;
+			ptrObj->SetAge(25);
+			cout << "ptrObj->Age = " << ptrObj->GetAge() << endl;
+			if (ptrObj == ptrObj->GetThisPtr())
+			{
+				cout << "ptrObj 와 ptrObj의 this 포인터의 주소는 같다" << endl;
+			}
+		}
+	}
 #pragma endregion
 
 }

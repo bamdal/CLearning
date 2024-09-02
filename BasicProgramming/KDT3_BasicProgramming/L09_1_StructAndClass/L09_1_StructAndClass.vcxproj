@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="L09_1_StructAndClass.cpp" />
+    <ClCompile Include="SimpleClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleClass.h" />
