@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "L09_4_Simple_VirtualFunctio
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "L09_5_EXVirtualFunction", "L09_5_EXVirtualFunction\L09_5_EXVirtualFunction.vcxproj", "{809381CD-7A9E-4C13-953C-FFA3E39ABFF0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "L09_6_VirtualFunction", "L09_6_VirtualFunction\L09_6_VirtualFunction.vcxproj", "{43115A26-4D55-46B8-86C5-8E50E222C1B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -151,6 +153,14 @@ Global
 		{809381CD-7A9E-4C13-953C-FFA3E39ABFF0}.Release|x64.Build.0 = Release|x64
 		{809381CD-7A9E-4C13-953C-FFA3E39ABFF0}.Release|x86.ActiveCfg = Release|Win32
 		{809381CD-7A9E-4C13-953C-FFA3E39ABFF0}.Release|x86.Build.0 = Release|Win32
+		{43115A26-4D55-46B8-86C5-8E50E222C1B8}.Debug|x64.ActiveCfg = Debug|x64
+		{43115A26-4D55-46B8-86C5-8E50E222C1B8}.Debug|x64.Build.0 = Debug|x64
+		{43115A26-4D55-46B8-86C5-8E50E222C1B8}.Debug|x86.ActiveCfg = Debug|Win32
+		{43115A26-4D55-46B8-86C5-8E50E222C1B8}.Debug|x86.Build.0 = Debug|Win32
+		{43115A26-4D55-46B8-86C5-8E50E222C1B8}.Release|x64.ActiveCfg = Release|x64
+		{43115A26-4D55-46B8-86C5-8E50E222C1B8}.Release|x64.Build.0 = Release|x64
+		{43115A26-4D55-46B8-86C5-8E50E222C1B8}.Release|x86.ActiveCfg = Release|Win32
+		{43115A26-4D55-46B8-86C5-8E50E222C1B8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
