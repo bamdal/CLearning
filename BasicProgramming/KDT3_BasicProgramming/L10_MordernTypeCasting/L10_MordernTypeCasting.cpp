@@ -130,7 +130,7 @@ int main()
 
 		CBase* pDelete = pBase;
 		CDerived* Obj = new CDerived;	// pBase 가 파생이면 dynamic_cast<>의 성공
-		pBase = Obj;
+		pBase = Obj;					// pBase를 업 캐스팅 하여 dynamic_cast로 다운 캐스팅이 될수있게 한다.
 
 		//dynamic_cast<> 는 실행중에 유효하지 않은 포인터를 알려준다
 		CDerived* pDerived = dynamic_cast<CDerived*>(pBase);
