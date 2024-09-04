@@ -89,16 +89,36 @@ int main()
 	}
 	// shared_ptr의 순환 참조 오류 예시
 	{
-		std::shared_ptr<CircularRef> A = std::make_shared<CircularRef>();
+		/*std::shared_ptr<CircularRef> A = std::make_shared<CircularRef>();
 		std::shared_ptr<CircularRef> B = std::make_shared<CircularRef>();
 		A->SetRef(B);
 		B->SetRef(A);
 
 		long Count1 = A.use_count();
 		cout << "A의 레퍼런스 카운트 : " << Count1 << endl;
-		// 레퍼런스가 0 이되어야 메모리를 해제하는데 서로가 서로를 참조하니 0이될수가 없어 누구가 생김
+		// 레퍼런스가 0 이되어야 메모리를 해제하는데 서로가 서로를 참조하니 0이될수가 없어 누구가 생김*/
 	}
 #pragma endregion
+
+#pragma region 스마트 포인터 / weak_ptr
+	{
+		std::shared_ptr<CircularRef> A = std::make_shared<CircularRef>();
+		std::weak_ptr<CircularRef> B = A;
+		std::weak_ptr<CircularRef> C = A;
+		std::weak_ptr<CircularRef> D = A;
+		cout << "A의 레퍼런스 카운트 : " << A.use_count() << endl;
+		// weak_ptr로 받은 것은 레퍼런스가 증가하지 않는다
+		
+
+		const std::shared_ptr<CircularRef> pWeakUse = B.lock();
+
+		if (pWeakUse != nullptr)
+		{
+			pWeakUse->Print();
+		}
+	}
+#pragma endregion
+
 
 
 
