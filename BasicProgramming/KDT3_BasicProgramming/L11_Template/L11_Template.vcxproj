@@ -137,6 +137,9 @@
   <ItemGroup>
     <ClCompile Include="L11_Template.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TClass.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
