@@ -84,6 +84,33 @@ void CSimpleLinkedList::F_FrontInsert(int newKey, int key)
 }
 
 /// <summary>
+/// 특정값 뒤에 insert하기
+/// </summary>
+/// <param name="newKey"></param>
+/// <param name="key"></param>
+void CSimpleLinkedList::F_BackInsert(int newKey, int key)
+{
+	CNode* pPrevious = m_pHead;
+	CNode* pStart = m_pHead->pNext;
+	while (pStart != m_pTail && pStart->Key != key)
+	{
+		pPrevious = pStart;
+		pStart = pStart->pNext;
+	}
+
+	if (pStart != m_pTail)
+	{
+		CNode* pNode = new CNode;
+		pNode->Key = newKey;
+		pNode->pNext = pStart->pNext;
+		pStart->pNext = pNode;
+	}
+
+
+}
+
+
+/// <summary>
 /// 해당 키값을 찾기
 /// </summary>
 /// <param name="key">찾을 키값</param>

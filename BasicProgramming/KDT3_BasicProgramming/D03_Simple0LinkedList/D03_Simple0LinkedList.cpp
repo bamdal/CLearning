@@ -21,7 +21,7 @@ int main()
 
 	while (loop)
 	{
-		cout << "리스트 명령 입력 : 1) 오름차순삽입 2) 삽입 3) 찾기 4) 삭제 5) 내림차순삽입 6) 출력 7) 종료";
+		cout << "리스트 명령 입력 : 1) 오름차순삽입 2) 삽입 3) 찾기 4) 삭제 5) 내림차순삽입 6) 출력 7) 종료 8) 뒤에 삽입";
 		cin >> userInput;
 		switch (userInput)
 		{
@@ -44,6 +44,16 @@ int main()
 			pListObj->F_FrontInsert(newKey, key);
 		}
 			break;
+		case LIST_COMMAND::CMD_BEHIND_INSERT:
+		{
+			cout << "삽입할 값 입력 : ";
+			cin >> newKey;
+			cout << "입력할 위치 값 입력 : ";
+			int key = 0;
+			cin >> key;
+			pListObj->F_BackInsert(newKey, key);
+		}
+		break;
 		case LIST_COMMAND::CMD_FIND:
 		{
 			cout << "찾을 값을 입력하세요";

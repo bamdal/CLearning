@@ -17,6 +17,7 @@ enum LIST_COMMAND :int
 	CMD_OUTPUT,					// 현재 리스트 데이터 출력
 
 	CMD_EXIT,					// 프로그램을 종료한다.
+	CMD_BEHIND_INSERT
 
 };
 
@@ -41,6 +42,8 @@ public:
 
 	void F_AscendingInsert(int newKey);
 	void F_FrontInsert(int newKey, int key);
+	void F_BackInsert(int newKey, int key);
+
 	void F_Find_Node(int key);
 
 	void F_Node_Delete(int key);
