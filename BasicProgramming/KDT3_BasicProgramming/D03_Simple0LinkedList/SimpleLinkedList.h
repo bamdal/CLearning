@@ -42,10 +42,13 @@ public:
 	void F_AscendingInsert(int newKey);
 	void F_FrontInsert(int newKey, int key);
 	void F_Find_Node(int key);
-	void F_Node_Delete(int key);
-	void F_DescendingInsert(int newkey);
-	void F_Output(CNode* = nullptr);
 
+	void F_Node_Delete(int key);
+
+	void F_DescendingInsert(int newkey);
+
+
+	void F_Output(CNode* = nullptr);
 
 private:
 	CNode* m_pHead;
