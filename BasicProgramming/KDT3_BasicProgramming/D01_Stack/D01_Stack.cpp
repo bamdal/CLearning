@@ -102,36 +102,108 @@ bool CSimpleStack::CheakEmpty()
 	return result;
 }
 
+template<typename T>
+class TestStack
+{
+public:
+	TestStack();
+	~TestStack();
+
+	void Push(const T&);
+	T Pop();
+
+private:
+	int index = 0;
+	T stack[10] = {};
+
+
+
+};
+
+
+template<typename T>
+TestStack<T>::TestStack()
+{
+}
+
+template<typename T>
+TestStack<T>::~TestStack()
+{
+}
+template<typename T>
+void TestStack<T>::Push(const T &pushParam)
+{
+	stack[index] = pushParam;
+	index++;
+}
+
+template<typename T>
+T TestStack<T>::Pop()
+{
+	T pop = stack[index-1];
+	stack[index-1] = 0;
+	index--;
+	return pop;
+}
 int main()
 {
 	CSimpleStack StackObj;
 	int UserInput = STACK_COMMAND::CMD_ERROR;
 	bool Loop = true;
 
-	while (Loop)	//일종의 게임 루프
-	{
+	//while (Loop)	//일종의 게임 루프
+	//{
+	//	cout << "스택 명령의 번호를 입력하세요 | 1) push 2) pop 3) view 4) Exit" << endl;
+	//	cin >> UserInput;	// 사용자 입력을 받아온다 (while 루프 안이지만 사용자의 입력을 대기함)
+	//	switch (UserInput)
+	//	{
+	//	case CMD_ERROR:
+	//		break;
+	//	case CMD_PUSH:
+	//		StackObj.F_Push();
+	//		break;
+	//	case CMD_POP:
+	//		StackObj.F_Pop();
+	//		break;
+	//	case CMD_EXIT:
+	//		Loop = false;
+	//		cout << "프로그램을 종료합니다" << endl;
+	//		break;
+	//	case CMD_OUTPUT:
+	//		StackObj.F_Output();
+	//		break;
+	//	default:
+	//		cout << "지원하지 않는 명령입니다" << endl;
+	//		break;
+	//	}
+	//}
+
+	TestStack<double> Stack;
+
+	while(true){
 		cout << "스택 명령의 번호를 입력하세요 | 1) push 2) pop 3) view 4) Exit" << endl;
-		cin >> UserInput;	// 사용자 입력을 받아온다 (while 루프 안이지만 사용자의 입력을 대기함)
+			cin >> UserInput;
 		switch (UserInput)
 		{
 		case CMD_ERROR:
 			break;
 		case CMD_PUSH:
-			StackObj.F_Push();
+			double i;
+			cin >> i;
+			Stack.Push(i);
 			break;
 		case CMD_POP:
-			StackObj.F_Pop();
-			break;
-		case CMD_EXIT:
-			Loop = false;
-			cout << "프로그램을 종료합니다" << endl;
+			cout << Stack.Pop() << endl;
 			break;
 		case CMD_OUTPUT:
-			StackObj.F_Output();
+			break;
+		case CMD_EXIT:
 			break;
 		default:
-			cout << "지원하지 않는 명령입니다" << endl;
 			break;
 		}
 	}
 }
+
+
+
