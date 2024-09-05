@@ -4,7 +4,7 @@
 using namespace std;
 
 #define MAX_STACK_SIZE (10)
-#define INVALID_STACK_POINTER (-1);
+#define INVALID_STACK_POINTER (-1)
 
 enum STACK_COMMAND :int
 {
@@ -26,6 +26,7 @@ public:
 	void F_Push();
 	void F_Pop();
 	void F_Output();
+	bool CheakEmpty();
 
 private:
 	int Container[MAX_STACK_SIZE] = {};	// 스택 컨테이너
@@ -45,11 +46,19 @@ CSimpleStack::~CSimpleStack()
 /// </summary>
 void CSimpleStack::F_Push()
 {
-	int data;
-	cout << "스택에 넣을 숫자를 입력하세요 : ";
-	cin >> data;
-	StackPointer++;
-	Container[StackPointer] = data;
+	if (StackPointer < MAX_STACK_SIZE-1)
+	{
+		int data;
+		cout << "스택에 넣을 숫자를 입력하세요 : ";
+		cin >> data;
+		StackPointer++;
+		Container[StackPointer] = data;
+
+	}
+	else
+	{
+		cout << "스택이 가득 찼습니다." << endl;
+	}
 }
 
 /// <summary>
@@ -57,7 +66,7 @@ void CSimpleStack::F_Push()
 /// </summary>
 void CSimpleStack::F_Pop()
 {
-	if (StackPointer > -1)
+	if (CheakEmpty())
 	{
 		cout << "F_Pop()_" << StackPointer << ": " << Container[StackPointer] << endl;
 		Container[StackPointer] = 0;
@@ -78,8 +87,19 @@ void CSimpleStack::F_Output()
 	cout << "[현재 스택 컨테이너에 들어있는 데이터]" << endl;
 	for (int i = StackPointer; i >= 0; i--)
 	{
-		cout << i << " : " << Container[i] << endl;
+		cout << "index " << i << "번째 데이터 : " << Container[i] << endl;
 	}
+}
+
+bool CSimpleStack::CheakEmpty()
+{
+	bool result = true;
+	if (!(StackPointer > INVALID_STACK_POINTER))
+	{ 
+		cout << "Stack Empty" << endl;
+		result = false;
+	}
+	return result;
 }
 
 int main()
