@@ -49,6 +49,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D02_Queue", "D02_Queue\D02_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D03_Simple0LinkedList", "D03_Simple0LinkedList\D03_Simple0LinkedList.vcxproj", "{57738A44-1CCD-4336-8E6D-41E202F2FBD5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "L09_9_OperatorOverloding", "L09_9_OperatorOverloding\L09_9_OperatorOverloding.vcxproj", "{E191985D-0451-4F78-8E3D-A32357BF570C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -241,6 +243,14 @@ Global
 		{57738A44-1CCD-4336-8E6D-41E202F2FBD5}.Release|x64.Build.0 = Release|x64
 		{57738A44-1CCD-4336-8E6D-41E202F2FBD5}.Release|x86.ActiveCfg = Release|Win32
 		{57738A44-1CCD-4336-8E6D-41E202F2FBD5}.Release|x86.Build.0 = Release|Win32
+		{E191985D-0451-4F78-8E3D-A32357BF570C}.Debug|x64.ActiveCfg = Debug|x64
+		{E191985D-0451-4F78-8E3D-A32357BF570C}.Debug|x64.Build.0 = Debug|x64
+		{E191985D-0451-4F78-8E3D-A32357BF570C}.Debug|x86.ActiveCfg = Debug|Win32
+		{E191985D-0451-4F78-8E3D-A32357BF570C}.Debug|x86.Build.0 = Debug|Win32
+		{E191985D-0451-4F78-8E3D-A32357BF570C}.Release|x64.ActiveCfg = Release|x64
+		{E191985D-0451-4F78-8E3D-A32357BF570C}.Release|x64.Build.0 = Release|x64
+		{E191985D-0451-4F78-8E3D-A32357BF570C}.Release|x86.ActiveCfg = Release|Win32
+		{E191985D-0451-4F78-8E3D-A32357BF570C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
