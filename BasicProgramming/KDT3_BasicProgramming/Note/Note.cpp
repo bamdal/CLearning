@@ -3,29 +3,14 @@ using namespace std;
 
 int main()
 {
+	int n = 0;
+	cin >> n;
 
-
-	int test = 0;
-	cin >> test;
-
-	switch (test / 10)
+	for (int i = 0; i < n; i++)
 	{
-	case  10: case 9:
-		cout << "A";
-		break;
-	case 8:
-		cout << "B";
-		break;
-	case 7:
-		cout << "C";
-		break;
-	case 6:
-		cout << "D";
-		break;
-	default:
-		cout << "F";
-		break;
-
+		
 	}
+
+
 
 }
