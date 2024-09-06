@@ -12,6 +12,8 @@ public:
 
 	// 연산자 (+) 오버로딩
 	CTranslation operator + (const CTranslation& Obj);
+	CTranslation operator - (const CTranslation& Obj);
+	CTranslation operator / (const CTranslation& Obj);
 
 	// 데이터 타입 변환에 대한 연산자 오버로딩
 	operator double() const;
@@ -47,6 +49,32 @@ inline CTranslation CTranslation::operator+(const CTranslation& Obj)
 	int y = Y + Obj.Y;
 	int z = Z + Obj.Z;
 
+	return CTranslation(x,y,z);
+}
+
+inline CTranslation CTranslation::operator-(const CTranslation& Obj)
+{
+	int x = X - Obj.X;
+	int y = Y - Obj.Y;
+	int z = Z - Obj.Z;
+
+	return CTranslation(x, y, z);
+}
+
+inline CTranslation CTranslation::operator/(const CTranslation& Obj)
+{
+	double x = 0;
+	double y = 0;
+	double z = 0;
+	
+	if (Obj.X * Obj.Y * Obj.Z != 0)
+	{
+		x = (double)X / Obj.X;
+		y = (double)Y / Obj.Y;
+		z = (double)Z / Obj.Z;
+	}
+
+	
 	return CTranslation(x,y,z);
 }
 

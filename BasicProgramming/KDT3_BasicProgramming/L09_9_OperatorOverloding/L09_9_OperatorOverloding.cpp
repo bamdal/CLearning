@@ -21,6 +21,13 @@ int main()
         T2.Print();
         CTranslation T3 = T1 + T2;
         T3.Print();
+
+        CTranslation T4 = T1 - T2;
+        T4.Print();
+
+        CTranslation T5 = T1 / T2;
+        T5.Print();
+
         T3.SetN1(10);
         T3.SetN2(5);
 
