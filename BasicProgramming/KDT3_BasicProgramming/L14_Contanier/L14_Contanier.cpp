@@ -93,6 +93,40 @@ int main()
 		}
 
 	}
+	// iterator / erase, insert
+	{
+		vector<int> v;
+		v.reserve(10);
+		for (int i = 0; i < 10; i++)
+		{
+			v.push_back(i);
+		}
+
+		// iterator : 컨테이너내를 순회한다 v.begin()은 인덱스0번, v.end()는 인덱스n+1번
+		vector<int>::iterator it = std::find(v.begin(), v.end(), 4);
+		if (it != v.end())	// 못찾으면 end()가 들어간다
+		{
+			cout << v[4] << endl;
+
+			v.erase(it);	// 찾은 값을 지운다
+			cout << v[4] << endl;
+		}
+		v.erase(v.begin() + 1);	// 인덱스 1번값삭제	뒤에 값들이 앞으로 당겨온다
+		v.erase(v.end() - 1);	// 맨 마지막 값 삭제
+
+		v.insert(v.begin() + 4, 1000);	// 뒤에 값들이 밀리게 된다
+
+		for (vector<int>::iterator it = v.begin(); it != v.end(); it++)
+		{
+			cout << *it << endl;
+		}
+
+		// modern C++ 기능 (범위 기반 for)
+		for (int Value : v)	// 벡터 끝까지 간다
+		{
+			cout << Value << endl;
+		}
+	}
 #pragma endregion
 
 
