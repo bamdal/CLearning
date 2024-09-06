@@ -5,10 +5,17 @@
 
 using namespace std;
 
+#include <iostream>
 
 
 int main()
 {
+	std::cout << "Hello World!!" << endl;
+}
+
+int main()
+{
+	cout << "Hello World!!" << endl;
 	CSimpleLinkedList* pListObj = new CSimpleLinkedList;
 
 	int userInput = LIST_COMMAND::CMD_ERROR;
@@ -16,7 +23,7 @@ int main()
 	int newKey = 0;
 	for (int i = 0; i < 10; i += 2)
 	{
-		pListObj->F_AscendingInsert(i);
+		pListObj->F_DescendingInsert(i);
 	}
 
 	while (loop)
@@ -44,7 +51,7 @@ int main()
 			pListObj->F_FrontInsert(newKey, key);
 		}
 			break;
-		case LIST_COMMAND::CMD_BEHIND_INSERT:
+		case LIST_COMMAND::CMD_BACK_INSERT:
 		{
 			cout << "삽입할 값 입력 : ";
 			cin >> newKey;

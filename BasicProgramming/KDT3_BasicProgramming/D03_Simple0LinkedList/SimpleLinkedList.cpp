@@ -168,7 +168,7 @@ void CSimpleLinkedList::F_DescendingInsert(int newKey)
 {
 	CNode* pPrevious = m_pHead;
 	CNode* pStart = pPrevious->pNext;
-	// 새로 삽입할 newKey가 기존 리스트에 저장된 값보다 크거나 같을때
+	// 새로 삽입할 newKey가 기존 리스트에 저장된 값보다 작거나 같을때
 	while (pStart != m_pTail && newKey <= pStart->Key)
 	{
 		pPrevious = pPrevious->pNext;

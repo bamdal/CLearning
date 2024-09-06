@@ -2,6 +2,9 @@
 #include <iomanip>
 #include <io.h>
 #include <fcntl.h>
+#include <string>
+
+using namespace std;
 
 int main()
 {
@@ -32,6 +35,24 @@ int main()
 		std::cout << "Val + Num = " << iVal + iNum + 10 << std::endl;
 
 		// 이 예시에서 10, 100 => 리터럴( literals ) 이라함.
+
+		char szString[] = "Hello";        // 문자열 리터럴
+		const char* ptr = szString;
+		//ptr[0] = 'Q'; // 컴파일 에러
+		char szString2[] = "World!";
+		char* const ptr2 = szString2;
+		//ptr2 = szString; // 컴파일 에러
+		const char* const ptr3 = "Headcooler";
+		//ptr3 = szString; // 컴파일 에러
+		//ptr3[0] = 'K'; // 컴파일 에러
+
+		int a = 10;
+		const int num1 = 100; // 컴파일 타임 상수( compile-time constant )
+		const int num2 = a; // 런타임 상수( runtime constant )
+		//num2 = 1000;
+		_CONSTEXPR20 int num3 = 50; // 컴파일 타임 상수 ( 엄격 ) => 런타임 상수를 허용하지 않는다.
+		//num3 = 100; // 컴파일 에러
+
 	}
 #pragma endregion
 

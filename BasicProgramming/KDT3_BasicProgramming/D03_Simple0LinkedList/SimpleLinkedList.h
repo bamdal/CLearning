@@ -17,7 +17,7 @@ enum LIST_COMMAND :int
 	CMD_OUTPUT,					// 현재 리스트 데이터 출력
 
 	CMD_EXIT,					// 프로그램을 종료한다.
-	CMD_BEHIND_INSERT
+	CMD_BACK_INSERT
 
 };
 
