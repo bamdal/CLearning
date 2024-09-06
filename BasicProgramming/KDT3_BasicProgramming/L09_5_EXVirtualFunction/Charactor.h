@@ -22,13 +22,21 @@ public:
 
 	void Print()		// 일반 함수
 	{
-		cout << " Print() 함수 실행" << endl;
+		cout << " CCharactor::Print() 함수 실행" << endl;
 	}
 	void Print() const // const 함수 맴버함수 오버로딩 
 	{
-		cout << " Print() const 함수 실행" << endl;
+		cout << " CCharactor::Print() const 함수 실행" << endl;
 
 	}
+	void StatOutput() const	// const함수는 오버로딩 가능
+	{
+		//m_iHP++;
+		//SetDamage(10);	// 다른 맴버 함수를 호출해서 변수 수정도 안된다.
+		cout << "Player의 HP : " << m_iHP << endl;
+		cout << "Player의 Power : " << m_iPower << endl;
+	}
+
 
 private:
 
@@ -49,8 +57,10 @@ public:
 	CPlayer();
 	~CPlayer();
 
-	void StatOutput() const
+	void StatOutput() const	// const 키워드 추가시 맴버 함수 내에서 맴버를 수정할수 없게 된다.
 	{
+		//m_iHP++;
+		//SetDamage(10);	// 다른 맴버 함수를 호출해서 변수 수정도 안된다.
 		cout << "Player의 HP : " << m_iHP << endl;
 		cout << "Player의 Power : " << m_iPower << endl;
 	}

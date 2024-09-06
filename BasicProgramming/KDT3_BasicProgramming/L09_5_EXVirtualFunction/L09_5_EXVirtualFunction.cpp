@@ -21,5 +21,28 @@ int main()
 
     Hero.Attack(&Zombi);
     Zombi.StatOutput();
+
+    {
+        cout << endl << "[const 맴버함수 오버로딩]" << endl;
+        CCharactor ObjA;
+        ObjA.StatOutput();
+        
+        CPlayer ObjB;
+        ObjB.StatOutput();
+
+        cout << endl;
+        CCharactor ObjA2;
+        ObjA2.Print();
+        
+        const CCharactor ObjA3;
+        ObjA3.Print();
+
+        CPlayer ObjB2;
+        ObjB2.Print();
+
+        const CPlayer ObjB3;
+        ObjB3.Print();
+
+    }
 }
 
