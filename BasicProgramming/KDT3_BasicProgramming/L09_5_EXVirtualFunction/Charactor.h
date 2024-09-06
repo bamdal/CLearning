@@ -20,7 +20,15 @@ public:
 
 	virtual void Attack(CCharactor* pTarget) {};
 
+	void Print()		// 일반 함수
+	{
+		cout << " Print() 함수 실행" << endl;
+	}
+	void Print() const // const 함수 맴버함수 오버로딩 
+	{
+		cout << " Print() const 함수 실행" << endl;
 
+	}
 
 private:
 
@@ -41,7 +49,7 @@ public:
 	CPlayer();
 	~CPlayer();
 
-	void StatOutput()
+	void StatOutput() const
 	{
 		cout << "Player의 HP : " << m_iHP << endl;
 		cout << "Player의 Power : " << m_iPower << endl;
