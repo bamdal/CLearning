@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <vector>
+#include <list>
+#include <queue>
+
 
 using namespace std;
 
@@ -126,8 +129,82 @@ int main()
 		{
 			cout << Value << endl;
 		}
+
+		int iSize = (int)v.size();	
+		for (int i = 0; i < iSize; i++)
+		{
+
+		}
 	}
 #pragma endregion
+
+#pragma region list (doubly linked list : 이중 연결 리스트)
+	{
+		cout << "[STL List : 이중 연결 리스트]" << endl;
+		std::list<int> List;
+
+		for (int i = 0; i < 10; i++)
+		{
+			List.push_back(i);
+		}
+
+		std::list<int>::iterator it = List.begin();
+
+		int a = *it;
+		int b = *(++it);
+		int c = *(--it);
+		int d = *(it++);
+		int e = *(it--);
+
+
+		list<int>::iterator it2 = List.insert(it, 1000);	 // 삽입후 해당 위치의 이터레이터를 반환 기존값은 뒤로 밀림
+		List.erase(it2);	// 이터레이터가 가리키는 노드를 삭제하지만 벡터처럼 뒤에 값들을 당겨오지 않는다
+		// it2는 Dangling Pointer(가르키는 포인터가 이미 해제되어있다)
+
+
+		cout << a << " " << b << " " << c << " " << d << " " << e << endl;
+
+		list<int>::iterator it3 = List.begin();
+
+		for (; it3 != List.end(); it3++)
+		{
+			cout << *it3 << endl;
+		}
+
+		auto it4 = List.begin();	// 타입 추론
+		for (; it4 != List.end(); it4++)
+		{
+			cout << *it4 << endl;
+		}
+
+
+
+	}
+#pragma endregion
+
+#pragma region queue(FIFO) / UE TQueue
+	{
+		// 컨테이너 한쪽 끝에서만 원소를 추가하고, 다른 쪽 끝에서는 꺼내기만 한다.
+		cout << "[STL Queue : 큐]" << endl;
+
+		std::queue<int> Queue;
+		for (int i = 0; i < 10; i++)
+		{
+			if (i % 2 == 0)
+			{
+				Queue.push(i);
+
+			}
+			else
+			{
+				Queue.emplace(i);
+
+			}
+		}
+
+	}
+#pragma endregion
+
 
 
 }
