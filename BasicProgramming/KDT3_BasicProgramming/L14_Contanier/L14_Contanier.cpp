@@ -78,7 +78,7 @@ int main()
 		// reserve: capacity(용량)는 *1.5배씩 사이즈가 계속 늘어난다
 		// resize : 용량 확보 이후 데이터 생성(초기화)
 		{
-			std:vector<int> V;
+			std::vector<int> V;
 			V.reserve(10);		// capacity만 확보 size는 필요할때 마다 추가
 			for (int i = 0; i < 10; i++)
 			{
@@ -461,6 +461,12 @@ int main()
 		Map.insert(std::make_pair(3, "test333"));
 		Map.insert(std::make_pair(1, "test111"));
 		
+		std::unordered_map<int, std::string>::iterator it = Map.find(0);
+		if (it != Map.end())
+		{
+			cout << it->first << " " << it->second << endl;
+		}
+
 
 		Map[444] = "test444";
 		Map[4] = "test4";

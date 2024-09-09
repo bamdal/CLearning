@@ -1,27 +1,31 @@
 ﻿#include <iostream>
+
+
+
 using namespace std;
 
 int main()
 {
-	
-	int n = 0;
 
+
+	int n = 0;
 	cin >> n;
 
-	int* num = (int*)malloc(sizeof(int)*n);
-	int a = 0, b = 0;
+	int* a = (int*)malloc(sizeof(int) * n);
+	int* b = (int*)malloc(sizeof(int) * n);
+
+	int* sum = (int*)malloc(sizeof(int)*n);
+	for (int i = 0; i < n;i++)
+	{
+		cin >> a[i] >> b[i];
+		sum[i] = a[i] + b[i];
+	}
 	for (int i = 0; i < n; i++)
 	{
-		a = 0, b = 0;
-		cin >> a >> b;
-		num[i] = a + b;
+		cout << "Case #"<< i+1<<": "<< a[i] << " + " << b[i] << " = " << sum[i] << "\n";
 	}
 
-	for (int i = 0; i < n; i++)
-	{
-		cout << num[i] << endl;
-	}
-
-	free(num);
-
+	free(a);
+	free(b);
+	free(sum);
 }
