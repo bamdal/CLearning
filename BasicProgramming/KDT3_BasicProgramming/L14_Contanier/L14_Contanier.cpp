@@ -338,6 +338,109 @@ int main()
 	}
 #pragma endregion
 
+#pragma region stack (LIFO)
+	{
+		cout << "[STL Stack : 스택]" << endl;
+
+		std::stack<int> Stack;
+		for (int i = 0; i < 10; i++)
+		{
+			cout << i << endl;
+			Stack.push(i);
+		}
+
+		cout << "stack pop" << endl;
+
+		while (!Stack.empty())
+		{
+			int value = Stack.top();
+			cout << value << endl;
+			Stack.pop();
+		}
+	}
+#pragma endregion
+
+#pragma region map
+	{
+		// pair : 두 데이터를 들고 있는 컨테이너
+		{
+			std::pair<std::string, std::string> Pair{"Hello(key)","World(value)"};
+			cout << std::format("Key : {}, Value : {}\n", Pair.first, Pair.second);
+
+			std::pair<int, std::string>Pair2{ 1004,"Player" };
+			cout << std::format("Key : {}, Value : {}\n", Pair2.first, Pair2.second);
+
+			std::pair<std::string, double>Pair3{ "Player",3.141592 };
+			cout << std::format("Key : {}, Value : {}\n", Pair3.first, Pair3.second);
+		}
+
+		// map : pair의 컨테이너 (UE TMap)
+		// Red-Black Tree로 구현 => 자가 균형 이진 탐색 트리
+		// 원소의 키를 기준으로 정렬되어 데이터를 관리
+		// Key-Value를 쌍으로 저장해 빠르게 검색할 때 map을 사용
+		// [추가/삭제 연산 속도] list / map / vector 순서로 빠름
+		// [데이터 조회 속도] vector(O(1)) / map / list(O(n)) 순으로 빠름 vector는 random access가능
+		// 원소의 순서 유지가 주 목적이고 [추가/삭제/조회] 연산을 골고루 사용해야 하는 컨테이너 필요시 map이 무난
+		// map은 동일 키에 대해 하나의 값만 보관(중복키 허용X)
+		// 동일키에 대해 여러값을 보관하려면 multimap을 사용
+		{
+			std::map<int, std::string/*, std::greater<int>*/> Map;
+			Map.insert(std::make_pair(999, "NickName"));
+			Map.insert(std::make_pair(999, "Ignore"));	// insert시 이미 중복된 키값이 있으면 무시한다
+			Map[999] = "ChangeValue";					// 배열 인덱스처럼 Key값을 찾아 값을 수정(벡터처럼 인덱스로 접근하는건 아님)
+			Map[0] = "Hello";							// 0번 키값이 비어있으면 insert인것 처럼 수행한다.
+			// *배열처럼 수행될뿐 배열과는 다르다*
+			Map[123] = Map[0];
+			
+			std::map<int, std::string>::iterator it = Map.find(999);
+			auto it2 = Map.find(7);	// 형식 추론
+
+			if (it2 == Map.end())
+			{
+				cout << "해당키를 못찾음" << endl;
+			}
+
+			if (it != Map.end())
+			{
+				cout << format("key : {}, value : {}\n", it->first, it->second);
+			}
+
+
+			for (int i = 0; i < 20; i++)
+			{
+				Map[i] = "Hello" + std::to_string(i + 65);	// 해당 키값이 있으면 수정 없으면 생성
+			}
+			
+
+			cout << "map 전체 출력" << endl;
+			// map 전체 출력
+			for (auto& Pair : Map)
+			{
+				cout << format("key : {}, value : {}\n", Pair.first, Pair.second);
+			}
+
+			cout << endl << "map의 value 수정후 출력\n";
+			int i = 0;
+			for (auto it = Map.begin(); it != Map.end(); it++, i++)	// 증감 2개 가능
+			{
+				if (i % 2 == 0)
+				{
+					it->second = "!CAT!";
+				}
+				else
+				{
+					it->second = "!DOG!";
+				}
+				cout << format("key : {}, value : {}\n", it->first, it->second);
+			}
+
+			
+			int ii = 0;
+
+
+		}
+	}
+#pragma endregion
 
 
 }
