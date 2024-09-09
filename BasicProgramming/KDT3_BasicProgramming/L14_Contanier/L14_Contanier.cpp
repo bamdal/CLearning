@@ -4,7 +4,12 @@
 #include <vector>
 #include <list>
 #include <queue>
-
+#include <functional>
+#include <format>
+#include <stack>
+#include <map>
+#include <unordered_map>
+#include <string>
 
 using namespace std;
 
@@ -197,11 +202,139 @@ int main()
 			}
 			else
 			{
-				Queue.emplace(i);
+				Queue.emplace(i);	// 클래스 객체일 경우 좀 더 빠르다
 
 			}
 		}
 
+		// push : 생성된 객체 or 객체를 생성한 뒤 복사하여 넘겨줌(move) [생성자] => [복사생성자] / 즉 ,임시객체가 만들어져서 추가 메모리를 쓴다.
+		// emplace : 객체 생성에 필요한 (가변)인자를 forward로 넘겨줌 / 생성자를 다이렉트로 호출 
+
+		//int num = Queue[0];	// 컴파일 에러(Random access 불가능) iterator못씀
+		
+		int num = Queue.front(); // 첫번째 원소 값 반환
+		
+
+		size_t Size = Queue.size();
+
+		cout << "Queue의 남은 인자 개수 : " << Size << endl;
+
+		// 큐의 pop 명령
+		cout << "Queue의 pop 처리" << endl;
+		while (!Queue.empty())
+		{
+			int value = Queue.front();
+			cout << value << endl;
+			Queue.pop();
+		}
+
+		Size = Queue.size();
+
+		cout << "Queue의 남은 인자 개수 : " << Size << endl;
+		
+		
+		cout << "[STL Priority Queue : 우선순위 큐]" << endl;
+
+
+		// 내림차순 정렬
+		std::priority_queue<int, std::vector<int>, std::less<int>> PQ;
+		PQ.push(50);
+		PQ.push(30);
+		PQ.push(70);
+		PQ.push(680);
+		PQ.push(25);
+		PQ.push(250);
+		PQ.push(25);
+
+
+		cout << "priorty_queue의 오름차순 pop 처리\n";
+		while (!PQ.empty())
+		{
+			cout << PQ.top() << endl;
+			PQ.pop();
+		}
+
+
+		// 오름차순 정렬
+		std::priority_queue<int, std::vector<int>, std::greater<int>> PQ2;
+		PQ2.push(50);
+		PQ2.push(30);
+		PQ2.push(70);
+		PQ2.push(680);
+		PQ2.push(25);
+		PQ2.push(250);
+		PQ2.push(25);
+
+
+		cout << "priorty_queue의 내림차순 pop 처리\n";
+		while (!PQ2.empty())
+		{
+			cout << PQ2.top() << endl;
+			PQ2.pop();
+		}
+		int ii = 0;
+
+
+	}
+	// 람다를 사용한 여러 큐를 사용해서 우선순위로 분리
+	{
+		std::queue<std::string> Channel1;
+		std::queue<std::string> Channel2;
+		std::queue<std::string> Channel3;
+
+		enum class EPriority	// 채팅창 탭
+		{
+			Channel1,	// 귓속말
+			Channel2,	// 인게임 메시지
+			Channel3,	// 시스템 공지
+		};
+
+		
+		std::function MyLambda = [&](const EPriority InPriority, std::string str)
+			{
+				switch (InPriority)
+				{
+				case EPriority::Channel1:
+					Channel1.push(str);
+					break;
+				case EPriority::Channel2:
+					Channel2.push(str);
+					break;
+				case EPriority::Channel3:
+					Channel3.push(str);
+					break;
+				default:
+					_ASSERT(false);	// 예외처리
+					break;
+				}
+			};
+
+		MyLambda(EPriority::Channel2, "게임 채팅 2_1번");
+		MyLambda(EPriority::Channel1, "게임 채팅 1_1번");
+		MyLambda(EPriority::Channel1, "게임 채팅 1_2번");
+		MyLambda(EPriority::Channel3, "게임 채팅 3_1번");
+		MyLambda(EPriority::Channel2, "게임 채팅 2_2번");
+		MyLambda(EPriority::Channel2, "게임 채팅 2_3번");
+		MyLambda(EPriority::Channel3, "게임 채팅 3_2번");
+
+		std::cout << "[Channel1 ]\n";
+		while (!Channel1.empty())
+		{
+			cout << Channel1.front() << endl;
+			Channel1.pop();
+		}
+		std::cout << "[Channel2 ]\n";
+		while (!Channel2.empty())
+		{
+			cout << Channel2.front() << endl;
+			Channel2.pop();
+		}
+		std::cout << "[Channel3 ]\n";
+		while (!Channel3.empty())
+		{
+			cout << Channel3.front() << endl;
+			Channel3.pop();
+		}
 	}
 #pragma endregion
 
