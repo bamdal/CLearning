@@ -1,4 +1,11 @@
+# Visual Studio 2022 cache/options directory
 .vs/
+
+# Visual Studio 2022 vcxproj.user
 *.user
+
 x64/
 x86/
+
+SLL/*.idb
+SLL/*.pdb
