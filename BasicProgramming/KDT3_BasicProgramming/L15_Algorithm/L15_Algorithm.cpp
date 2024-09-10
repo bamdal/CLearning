@@ -204,6 +204,50 @@ int main()
 			cout << "[삽입정렬 이후]" << endl;
 			PrintVector(V);
 		}
+
+		// 3) 퀵정렬(quick sort)	: pivot(기준)값을 선정해 해당 값보다 작은 데이터와 큰 데이터로 분류하는 것을 반복(재귀호출)하여 정렬
+		// 구현 복잡, 시간 복잡도는 평균 O(nlogn) 최악 O(n^2)
+		{
+			int N = 100;
+			vector<int> V(N, 777); // resize(N) + 777로 초기화
+			for (int i = 0; i < 100; i++)
+			{
+
+				V[i] = Dist(Gen); // 랜덤값으로 수정
+			}
+
+
+			cout << "[ 퀵정렬 이전 ]" << endl;
+			PrintVector(V);
+
+			QuickSort(V, 0, N - 1);
+
+			cout << "[ 퀵정렬 이후 ]" << endl;
+			PrintVector(V);
+
+		}
+		// 4) 힙 정렬(Heap sort) : 완전 이진트리를 베이스로 힘 자료구조를 기반한 정렬
+		// min,max 값을 쉽게 추출할 수 있다.
+		// 구현은 복잡, 시간복잡도 최선,평균,최악 모두 O(log n), 공간 복잡도 O(n)
+		{
+
+			int N = 101;
+			vector<int> V(N, 0); // resize(N) + 777로 초기화
+			for (int i = 1; i < 101; i++)
+			{
+
+				V[i] = Dist(Gen); // 랜덤값으로 수정
+			}
+			cout << "[ 힙정렬 이전 ]" << endl;
+			PrintVector(V);
+
+			CHeapSort Obj(V);
+			Obj.HeapSort();
+
+			cout << "[ 힙정렬 이후 ]" << endl;
+			PrintVector(V);
+
+		}
 #pragma endregion
 
 
