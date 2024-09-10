@@ -17,13 +17,14 @@ void PrintVector(std::vector<int>& V)
 	string strValue;
 	for (int& it : V)
 	{
-		if (i++ < 10)
+		if (i++ < 9)
 		{
 			strValue += format("[{}] \t", it);
 		}
 		else
 		{
 			i = 0;
+			strValue += format("[{}]", it);
 			cout << strValue << endl;
 			strValue = "";
 		}

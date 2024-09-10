@@ -250,5 +250,36 @@ int main()
 		}
 #pragma endregion
 
+#pragma region STL의 sort
+		// STL의 각 컨테이너들은 sort함수가 있다(introsort : 하이브리드 정렬 알고리즘)
+		// 컨테이너의 퀵 정렬을 기반으로 상황에 따라 힙 정렬 또는 삽입 정렬로 전환
+		{
+			cout << "STL의 sort" << endl;
+
+			int N = 100;
+			vector<int> V(N, 777); // resize(N) + 777로 초기화
+			for (int i = 0; i < 100; i++)
+			{
+
+				V[i] = Dist(Gen); // 랜덤값으로 수정
+			}
+
+			cout << "[STL의 sort 이전]" << endl;
+			PrintVector(V);
+
+			// 오름차순 정렬
+			std::sort(V.begin(), V.end(), std::less<int>());
+			
+
+			PrintVector(V);
+
+			// 내림차순 정렬
+			std::sort(V.begin(), V.end(), std::greater<int>());
+
+			PrintVector(V);
+
+		}
+#pragma endregion
+
 
 }
