@@ -10,46 +10,39 @@ typedef vector<vector<int>> VA;
 
 class BFS
 {
-	int NodeCount, EdgeCount, StartNode;
+	int NodeCount;
 	VA _va;
 	vector<bool> VArr;
 
 public:
-	BFS(int _cnt1, int _cnt2) : NodeCount(_cnt1), EdgeCount(_cnt2)
+
+	BFS(int _cnt1) : NodeCount(_cnt1)
 	{
 		_va.resize(NodeCount + 1);
-		VArr = vector<bool>(NodeCount + 1, false);	// 방문 배열
+		VArr = vector<bool>(NodeCount + 1, false); // 방문 배열
 	}
 
 	VA& GetGraph() { return _va; }
-	
-	int F_Excute(int node)
+
+	void F_Execute(int Start)
 	{
 		queue<int> myqueue;
-		myqueue.push(node);
-		VArr[node] = true;
-		int count = 0;
+		myqueue.push(Start);
+		VArr[Start] = true;
+
 		while (!myqueue.empty())
 		{
 			int now_node = myqueue.front();
 			myqueue.pop();
-
 			cout << now_node << " ";
 			for (int i : _va[now_node])
 			{
 				if (!VArr[i])
 				{
-					count++;
 					VArr[i] = true;
 					myqueue.push(i);
 				}
 			}
-
-
 		}
-		return count;
 	}
-
-
-
 };
