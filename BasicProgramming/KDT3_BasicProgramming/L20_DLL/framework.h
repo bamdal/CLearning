@@ -4,4 +4,6 @@
 // Windows 헤더 파일
 #include <windows.h>
 #include <iostream>
+#include "TestDLL.h"
+
 using namespace std;
