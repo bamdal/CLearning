@@ -5,6 +5,9 @@
 #include "framework.h"
 using namespace std;
 
+// 속성입력대신 이렇게 적을수도 있음
+//#pragma comment(lib,"L20_DLL_r.lib")
+
 typedef int (*DLL_SUM)(int a, int b);
 
 int main()
@@ -38,12 +41,20 @@ int main()
 #pragma region DLL 함수 사용 2
     {
         bool go = true;
-        if (go)
+        if (!go)
         {
-            // 프로젝트 속성->링커->입력에 걸어놨기에 사용가능
+            // 프로젝트 속성->링커->입력->추가종속성에 걸어놨기에 사용가능
             int Ret = Dll_Sum(40, 60);
             cout << "Ret : " << Ret << endl;
         }
+
+    }
+#pragma endregion
+
+#pragma region UE 방식
+    {
+        int Ret = Dll_Game();
+        cout << "Ret : " << Ret << endl;
 
     }
 #pragma endregion
