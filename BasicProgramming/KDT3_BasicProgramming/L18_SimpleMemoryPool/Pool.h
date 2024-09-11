@@ -65,6 +65,7 @@ FMemoryPool::FMemoryPool(const size_t InChunkSize, const size_t InChunkcount) no
 	// 11 == 1011(2진수)
 	// ~(8 - 1) -> ~(0111) -> (1000)
 	// (1011) & (1000) == (1000)
+	// AlignedChunkSize : 정렬된 청크의 사이즈 -> Align(정렬된)의 배수로 맞추기 위한 수식이다.
 	const size_t AlignedChunkSize = ((InChunkSize + (Align - 1)) & ~(Align - 1));
 	const size_t TotalMemorySize = AlignedChunkSize * ChunkCount;
 	StartAddress = _aligned_malloc(TotalMemorySize, Align);
