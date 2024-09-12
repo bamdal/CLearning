@@ -4,6 +4,11 @@
 #include <format>
 #include "IniParser/inicpp.h"
 
+#include "../../../rapidjson/include/rapidjson/document.h"
+#include "../../../rapidjson/include/rapidjson/writer.h"
+#include "../../../rapidjson/include/rapidjson/stringbuffer.h"
+
+
 using namespace std;
 
 /// <summary>
@@ -16,7 +21,7 @@ void TestFileWrite(std::ofstream& _OS)
 	const size_t WriteSize = String.size();
 
 
-	_OS.write((const char*)&WriteSize, sizeof(size_t));	// 1) 문자열의 사이즈 저장
+	_OS.write((const char*)&WriteSize, sizeof(size_t));		// 1) 문자열의 사이즈 저장
 	_OS.write(String.c_str(), String.size());				// 2) 문자열 저장
 
 
@@ -150,11 +155,148 @@ int main()
 		{
 			cout << format("Key : {}, Value : {}\n", it.first, it.second.as<std::string>());
 		}
+	}
+#pragma endregion
 
-		int ii = 0;
+#pragma region json 파일
+	{
+		struct FPlayer
+		{
+		private:
+			string Name;
+			int Level = 0;
+			int Exp = 0;
+
+		public:
+			FPlayer() = default;	// 컴파일러가 만들어준 default constructor사용
+			FPlayer& operator = (const FPlayer& rhs) = default;	// 컴파일러가 만들어준 대입 연산자 사용
+			FPlayer(const FPlayer&) = default;					// 컴파일러가 만들어준 default copy constructor 사용
+			FPlayer(string_view InName, const int InLevel, const int InExp) noexcept	// 예외를 방출하지 않음(https://lakanto.tistory.com/35)
+				:Name(InName), Level(InLevel), Exp(InExp)
+			{
+
+			}
+			virtual ~FPlayer() = default;	// 컴파일러가 만들어준 default constructor사용
+
+			void PrintPlayerInfo()
+			{
+				cout << format("Name : {}, Level : {}, Exp : {}", Name, Level, Exp);
+			}
+
+			void Save(rapidjson::Value& InOutValue, rapidjson::Document::AllocatorType& InAllocator)
+			{
+				if (Name.empty())
+				{
+					_ASSERT(false);
+				}
+				rapidjson::Value PlayerNameString(rapidjson::kStringType);
+				PlayerNameString.SetString(Name.c_str(),InAllocator);
+				
+				InOutValue.AddMember("PlayerName", PlayerNameString, InAllocator);
+				InOutValue.AddMember("PlayerLevel", Level, InAllocator);
+				InOutValue.AddMember("PlayerExp", Exp, InAllocator);
+
+			}
+
+			void Load(const rapidjson::Value& InValue)
+			{
+				if (InValue.HasMember("PlayerName"))
+				{
+					const char* String = InValue["PlayerName"].GetString();
+					Name = String;
+				}
+				else
+				{
+					_ASSERT(false);
+					Name = "DefaultName";
+				}
+
+				if (InValue.HasMember("Level"))
+				{
+					Level = InValue["Level"].GetInt();
+				}
+
+				if (InValue.HasMember("Exp"))
+				{
+					Exp = InValue["Exp"].GetInt();
+				}
+			}
+		};
+
+		using uint = unsigned int;
+		// constexpr 는 컴파일단계에서 설정 const는 나중에라도 먼저 들어온 값으로 고정
+		constexpr uint PlayerNumber = 3;
+		{
+			vector<FPlayer> Players;
+			Players.reserve(PlayerNumber);
+
+			for (uint i = 0; i < PlayerNumber; i++)
+			{
+				string Name = "Player" + to_string(i);
+				Players.emplace_back(Name, i, i + 100);
+			}
+
+			rapidjson::Document Doc(rapidjson::kObjectType);
+			rapidjson::Value Array(rapidjson::kArrayType);
+			for (FPlayer& it : Players)
+			{
+				rapidjson::Value PlayerValue(rapidjson::kObjectType);
+				it.Save(PlayerValue, Doc.GetAllocator());
+
+				Array.PushBack(PlayerValue, Doc.GetAllocator());
+			}
+
+			Doc.AddMember("PlayerInfo", Array, Doc.GetAllocator());
+			
+			rapidjson::StringBuffer Buffer;
+			rapidjson::Writer<rapidjson::StringBuffer> Writer(Buffer);
+			Doc.Accept(Writer);
+			string Json(Buffer.GetString(),Buffer.GetSize());
+
+
+
+			std::ofstream File("TestJson.json");
+			File << Json;
+		}
+		// Load
+		{
+			std::vector<FPlayer> Players;
+			std::ifstream File("TestJson.json");
+			std::string Json;
+			std::string TempLine;
+			while (std::getline(File, TempLine))
+			{
+				Json += TempLine;
+			}
+			rapidjson::Document Doc(rapidjson::kObjectType);
+			Doc.Parse(Json.data());
+
+			bool bPlayerInfo = Doc.HasMember("PlayerInfo");
+			if (bPlayerInfo)
+			{
+				rapidjson::Value& Array = Doc["PlayerInfo"];
+				if (Array.IsArray())
+				{
+					const rapidjson::SizeType Size = Array.Size();
+					for (rapidjson::SizeType i = 0; i < Size; i++)
+					{
+						FPlayer NewPlayer;
+						rapidjson::Value& Value = Array[i];
+						NewPlayer.Load(Value);
+						Players.emplace_back(NewPlayer);
+					}
+				}
+			}
+
+			for (auto& it : Players)
+			{
+				it.PrintPlayerInfo();
+			}
+		}
 
 	}
 #pragma endregion
+
 
 }
 
