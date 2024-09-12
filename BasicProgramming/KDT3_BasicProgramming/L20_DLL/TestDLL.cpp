@@ -13,7 +13,7 @@ int Dll_Game()
 	CSimpleStack StackObj;
 	int UserInput = STACK_COMMAND::CMD_ERROR;
 	bool Loop = true;
-	while (true) {
+	while (Loop) {
 		cout << "스택 명령의 번호를 입력하세요 | 1) push 2) pop 3) view 4) Exit" << endl;
 		cin >> UserInput;
 		switch (UserInput)

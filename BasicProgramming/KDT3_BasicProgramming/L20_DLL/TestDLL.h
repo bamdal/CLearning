@@ -10,6 +10,7 @@
 // Name Mangling : 컴파일러에 의해 이름이 변형되는 규칙 (calling convention에 영향을 받음)
 // C++은 함수 오버로딩 지원 => 링커가 오버로딩된 함수들의 이름을 변경하여 구분 & 호출
 // 그러나 보통 DLL에서는 복잡하니까 Explicit Linking(명시적 링킹)을 사용 
+// extern "C" {}	// {} 안에 강 써놓으면 일일히 extern "C" 안해도 됨
 extern "C" MYDLL_API int Dll_Sum(int A, int B);
 extern "C" MYDLL_API int Dll_Game();
 
