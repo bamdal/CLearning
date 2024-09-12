@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <format>
+#include "IniParser/inicpp.h"
 
 using namespace std;
 
@@ -94,11 +95,64 @@ int main()
 	}
 	// File Read (Binary)
 	{
-		std::ifstream InputStram = std::ifstream("TestBinary.txt", std::ios::in | std::ios::binary);
-		if (InputStram.is_open())
+		std::ifstream InputStream = std::ifstream("TestBinary.txt", std::ios::in | std::ios::binary);
+		if (InputStream.is_open())
 		{
-			TestFileRead(InputStram, true);
+			TestFileRead(InputStream, true);
 		}
+	}
+#pragma endregion
+#pragma region INI 파일
+	{
+		// inicpp.h 깃에서 받아서 사용
+		ini::IniFile File;	// 내부적으로 map을 사용 (Key : string, Value : map) (Key : stiring, Value : iniField)
+		// [세션의 이름][필드에 들어갈 항목] = value값 
+		File["A Section"]["FieldKey1"] = 0;
+		File["A Section"]["FieldKey2"] = 122;
+		File["A Section"]["FieldKey3"] = 1123;
+
+		File["B Section"]["FieldKey1"] = 2223;
+		File["B Section"]["FieldKey3"] = 22235;
+		File["B Section"]["FieldKey2"] = 22234;
+
+		File["C Graphics"]["Width"] = 2560;
+		File["C Graphics"]["Height"] = 1440;
+		File["C Graphics"]["Test"] = "Something_value";
+		File["C Graphics"]["Test2"] = "Something value";
+
+		File.save("IniFile.ini");
+
+	}
+
+	{
+		ini::IniFile File("IniFile.ini");
+		//File.load("IniFile.ini");
+		ini::IniField& Field = File["C Graphics"]["Test"];
+		std::string String = Field.as<std::string>();
+		std::string String2 = File["C Graphics"]["Test2"].as<std::string>();
+
+
+		int intVar = File["B Section"]["FieldKey1"].as<int>();
+
+
+		std::vector<int> Result;
+		for (int i = 0; i < 3; i++)
+		{
+			const std::string KeyName = "FieldKey" + std::to_string(i + 1);
+			int value = File["A Section"][KeyName].as<int>();
+			Result.push_back(value);
+		}
+		int Width = File["C Graphics"]["Width"].as<int>();
+		int Height = File["C Graphics"]["Height"].as<int>();
+
+		ini::IniSection Section = File["B Section"];
+		for (std::pair<const std::string, ini::IniField> it : Section)
+		{
+			cout << format("Key : {}, Value : {}\n", it.first, it.second.as<std::string>());
+		}
+
+		int ii = 0;
+
 	}
 #pragma endregion
 
