@@ -23,7 +23,7 @@ int main()
 		std::ofstream OutputStream = std::ofstream("Test.txt", std::ios::out);
 		if (OutputStream.is_open())
 		{
-			string String = "Hello File!\n";
+			string String = "Hello  File!\n";
 			OutputStream.write(String.c_str(), String.size());
 			OutputStream.close();
 		}
