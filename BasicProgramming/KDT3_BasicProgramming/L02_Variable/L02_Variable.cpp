@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <iomanip>
 #include <io.h>
 #include <fcntl.h>
@@ -133,7 +133,7 @@ int main()
 		fData = 3.1415926535f; 
 		std::cout << "float 값 : " << fData << " / float size : " << sizeof(float) << " bytes" << std::endl;
 
-		// 8바이트 실수형( 유효자릿수 16 )
+		// 8바이트 실수형( 배정도 : 유효자릿수 16 )
 		double dData = 3.14159265358979;
 		std::cout << "double 값 : " << dData << " / double size : " << sizeof(double) << " bytes" << std::endl;
 		std::cout << "double 값 정밀도 조정 " << std::setprecision(std::numeric_limits<double>::digits10+1) << dData  << std::endl;

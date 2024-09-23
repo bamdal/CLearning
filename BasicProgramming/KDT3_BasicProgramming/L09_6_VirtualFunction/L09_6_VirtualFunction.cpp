@@ -1,4 +1,4 @@
-﻿// L09_6_VirtualFunction.cpp : 가상함수
+// L09_6_VirtualFunction.cpp : 가상함수
 #include <iostream>
 
 using namespace std;
@@ -191,5 +191,6 @@ int main()
 
 		// 클래스의 기본 사이즈는 1byte로 4의 배수 사이즈로 크기가 늘어난다.
 		// virtual을 사용하게되면 가상함수 테이블이 생성되어 "_vfptr" 포인트 배열이 들어가기때문에 8byte에서 시작한다
+		// 런타임 도중에 가상함수 테이블을 보고 판단한다.
 	}
 }

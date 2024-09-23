@@ -1,4 +1,4 @@
-﻿// L10_MordernTypeCasting.cpp : Mordern C++ 형변환 정리/ 중요한건 dynamic_cast<> Down casting과 Up casting
+// L10_MordernTypeCasting.cpp : Mordern C++ 형변환 정리/ 중요한건 dynamic_cast<> Down casting과 Up casting
 #include <iostream>
 
 using namespace std;

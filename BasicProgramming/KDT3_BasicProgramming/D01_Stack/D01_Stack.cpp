@@ -1,4 +1,5 @@
 ﻿// D01_Stack.cpp : 기본 자료구조 프로그램 <스택>
+// CLI (Command Line Interface) 환경에서 작성
 #include <iostream>
 
 using namespace std;

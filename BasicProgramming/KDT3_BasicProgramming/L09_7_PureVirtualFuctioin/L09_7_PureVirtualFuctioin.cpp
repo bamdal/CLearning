@@ -1,4 +1,4 @@
-﻿// L09_7_PureVirtualFuctioin.cpp : 순수 가상함수
+// L09_7_PureVirtualFuctioin.cpp : 순수 가상함수
 #include <iostream>
 
 using namespace std;
@@ -85,6 +85,9 @@ APlayer::~APlayer()
 }
 int main()
 {
+	// 순수가상함수가 적히면 추상클래스가 되어서 객체 선언이 불가능해진다
+	// AWarrior* w = new AWarrior;
+
 	APlayer* pPlayer = new APlayer;
 	pPlayer->PrintAction();
 	delete pPlayer;

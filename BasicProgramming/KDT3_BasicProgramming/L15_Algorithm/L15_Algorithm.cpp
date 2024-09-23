@@ -1,4 +1,4 @@
-﻿// L15_Algorithm.cpp : 알고리즘(문자열, 정렬, 탐색, 그래프등)
+// L15_Algorithm.cpp : 알고리즘(문자열, 정렬, 탐색, 그래프등)
 #include "framework.h"
 #include <iostream>
 #include <random>
@@ -184,6 +184,10 @@ int main()
 				V[i] = Dist(Gen); // 랜덤값으로 수정
 			}
 
+
+			// 2) 삽입정릴( insertion sort ) : 이미 정렬된 데이터 범위에 정렬되지 않은 데이티를 적절한 위치에 삽입하여 정릴
+			// 간단히 구헌, 시간 복잡도는 O(n^2) 으로 느림
+
 			cout << "[삽입정렬 이전]" << endl;
 
 			PrintVector(V);
@@ -269,15 +273,12 @@ int main()
 
 			// 오름차순 정렬
 			std::sort(V.begin(), V.end(), std::less<int>());
-			
-
 			PrintVector(V);
 
 			// 내림차순 정렬
 			std::sort(V.begin(), V.end(), std::greater<int>());
-
 			PrintVector(V);
-
+			
 		}
 #pragma endregion
 

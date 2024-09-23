@@ -1,4 +1,4 @@
-﻿// L12_ModernSmartPointer.cpp : 스마트 포인터
+// L12_ModernSmartPointer.cpp : 스마트 포인터
 #include <crtdbg.h>
 #include <iostream>
 
@@ -96,7 +96,7 @@ int main()
 
 		long Count1 = A.use_count();
 		cout << "A의 레퍼런스 카운트 : " << Count1 << endl;
-		// 레퍼런스가 0 이되어야 메모리를 해제하는데 서로가 서로를 참조하니 0이될수가 없어 누구가 생김*/
+		// 레퍼런스가 0 이되어야 메모리를 해제하는데 서로가 서로를 참조하니 0이될수가 없어 누수가 생김*/
 	}
 #pragma endregion
 
